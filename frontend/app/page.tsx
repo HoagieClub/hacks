@@ -1,15 +1,3 @@
-/**
- * @overview Landing page for the template app.
- *
- * Copyright © 2021-2025 Hoagie Club and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree or at https://github.com/hoagieclub/template/LICENSE.
- *
- * Permission is granted under the MIT License to use, copy, modify, merge, publish, distribute, sublicense,
- * and/or sell copies of the software. This software is provided "as-is", without warranty of any kind.
- */
-
 'use client';
 
 import {
@@ -41,7 +29,6 @@ export function Home() {
 						Call to Action
 					</Button>
 				</Link>
-				<br />
 			</Pane>
 		);
 
@@ -84,7 +71,7 @@ export function Home() {
 								height={56}
 								width={majorScale(35)}
 								appearance='default'
-								marginTop={20}
+								marginBottom={20}
 								iconBefore={ArrowLeftIcon}
 							>
 								<Pane display='flex'>
