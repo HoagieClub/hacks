@@ -2,10 +2,6 @@ import { NextResponse } from "next/server";
 
 import type { NextRequest} from "next/server";
 
-export function GET() {
-    return NextResponse.json({ message: "API is working!" });
-}
-
 function isNumber(value: unknown): boolean {
     return typeof value === 'number' && isFinite(value);
 }
@@ -20,10 +16,6 @@ export async function POST(request: NextRequest) {
 
         const num1 = body?.num1;
         const num2 = body?.num2;
-
-        if (!isFinite(num1) || !isFinite(num2)) {
-            return NextResponse.json({ error: "Invalid numbers" }, { status: 400 });
-        }
 
         return NextResponse.json({ sum: num1 + num2 });
     } catch {

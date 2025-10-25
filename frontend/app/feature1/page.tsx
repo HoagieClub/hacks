@@ -3,7 +3,7 @@
 import type { ChangeEvent} from 'react';
 import { useState } from 'react';
 
-import { Text, Heading, Pane, majorScale, Button, Alert, TextInputField } from 'evergreen-ui';
+import { Text, Heading, Pane, majorScale, Button, TextInputField } from 'evergreen-ui';
 
 import View from '@/components/View';
 
@@ -14,6 +14,7 @@ export function Feature1() {
 
 	async function callAdd() {
 		try {
+			// Call API route to add two numbers
 			const response = await fetch('/api', {
 				method: 'POST',
 				headers: {
@@ -24,10 +25,13 @@ export function Feature1() {
                     num2: Number(num2),
 				}),
 			});
+
+			// Wait for response and parse JSON
 			const data = await response.json();
+
+			// Check for errors and update result state
 			if (response.ok) {
-                const sum = data.sum ?? data.message ?? JSON.stringify(data);
-                setResult(String(sum));
+                setResult(String(data.sum));
             } else {
 				setResult("Invalid inputs");
             }
@@ -36,7 +40,6 @@ export function Feature1() {
 		}
 	}
 
-	// Render the radio group form for selecting a resource option.
 	const SelectForm = (
 		<Pane marginBottom={majorScale(4)}>
 			<Heading size={900} marginTop={majorScale(2)} marginBottom={majorScale(1)}>
