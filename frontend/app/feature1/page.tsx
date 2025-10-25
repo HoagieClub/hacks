@@ -12,104 +12,61 @@
 
 'use client';
 
+import type { ChangeEvent} from 'react';
 import { useState } from 'react';
 
-import { useUser } from '@auth0/nextjs-auth0';
-import { RadioGroup, Text, Heading, Pane, majorScale, Spinner, Button, Alert } from 'evergreen-ui';
-import Link from 'next/link';
+import { Text, Heading, Pane, majorScale, Button, Alert, TextInputField } from 'evergreen-ui';
 
 import View from '@/components/View';
 
 export function Feature1() {
-	const { user, error, isLoading } = useUser();
-	const [optionValue, setOptionValue] = useState('docs');
+	const [num1, setNum1] = useState('');
+    const [num2, setNum2] = useState('');
+    const [result, setResult] = useState<string | null>(null);
 
-	// If the user data is loading, show a spinner.
-	if (isLoading) {
-		return <Spinner />;
-	}
-
-	// If there is an error, display the error message.
-	if (error) {
-		return <div>{error.message}</div>;
-	}
-
-	// Define the options with simple text labels
-	const options = [
-		{ label: 'Documentation', value: 'docs' },
-		{ label: 'UI Library', value: 'ui' },
-		{ label: 'Components Library', value: 'components' },
-	];
-
-	// Define the descriptions for each option
-	const getOptionDescription = (value: string) => {
-		switch (value) {
-			case 'docs':
-				return 'Exceptional software engineers devour documentation. Read the Hoagie docs!';
-			case 'ui':
-				return 'Our UI Design is mainly powered by the Evergreen library.';
-			case 'components':
-				return 'Complementary to Evergreen, we use the ShadCN library to compose beautiful components.';
-			default:
-				return '';
+	async function callAdd() {
+		try {
+			const response = await fetch('/api', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					num1: Number(num1),
+                    num2: Number(num2),
+				}),
+			});
+			const data = await response.json();
+			if (response.ok) {
+                const sum = data.sum ?? data.message ?? JSON.stringify(data);
+                setResult(String(sum));
+            } else {
+				setResult("Invalid inputs");
+            }
+		} catch (err) {
+			alert(`API call failed: ${err}`);
 		}
-	};
-
-	/**
-	 * Returns the appropriate URL based on the selected option.
-	 *
-	 * @returns {string} The URL to navigate to based on the selected option.
-	 */
-	const getNextUrl = () => {
-		switch (optionValue) {
-			case 'docs':
-				return 'https://docs.hoagie.io/';
-			case 'ui':
-				return 'https://evergreen.segment.com/foundations';
-			case 'components':
-				return 'https://ui.shadcn.com/';
-			default:
-				return '/';
-		}
-	};
-
-	// Render buttons for navigating to the selected resource or going back.
-	const bottomButtons = (
-		<Pane>
-			<Link href={getNextUrl()} target='_blank'>
-				<Button size='large' appearance='primary' float='right'>
-					Learn More
-				</Button>
-			</Link>
-			<Link href='/'>
-				<Button size='large' float='left'>
-					Back
-				</Button>
-			</Link>
-		</Pane>
-	);
+	}
 
 	// Render the radio group form for selecting a resource option.
 	const SelectForm = (
 		<Pane marginBottom={majorScale(4)}>
 			<Heading size={900} marginTop={majorScale(2)} marginBottom={majorScale(1)}>
-				Hi, {user?.name}
+				Hi
 			</Heading>
 			<Text size={500}>
 				Welcome to the template app! Here are some resources to get started:
 			</Text>
-			<RadioGroup
-				size={16}
-				value={optionValue}
-				options={options}
-				isRequired
-				marginTop={majorScale(3)}
-				onChange={(event) => setOptionValue(event.target.value)}
-			/>
 
-			{/* Display the description for the selected option */}
-			<Pane marginTop={majorScale(2)}>
-				<Text size={400}>{getOptionDescription(optionValue)}</Text>
+			<TextInputField label='Num1' value={num1} onChange={(e: ChangeEvent<HTMLInputElement>) => setNum1(e.target.value)} />
+			<TextInputField label='Num2' value={num2} onChange={(e: ChangeEvent<HTMLInputElement>) => setNum2(e.target.value)} />
+
+			<Button onClick={callAdd}>
+				Click to add two numbers
+			</Button>
+
+			<Pane marginTop={8}>
+				<Text size={500}>Result: {result}</Text>
 			</Pane>
 		</Pane>
 	);
@@ -123,7 +80,6 @@ export function Feature1() {
 					it!
 				</Alert>
 			</Pane>
-			{bottomButtons}
 		</View>
 	);
 }

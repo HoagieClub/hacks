@@ -14,21 +14,16 @@
 
 import { type ComponentType } from 'react';
 
-import { type User } from '@auth0/nextjs-auth0/types';
 import {
 	majorScale,
 	Pane,
 	Text,
-	Position,
-	Popover,
-	Avatar,
 	TabNavigation,
 	Tab,
 } from 'evergreen-ui';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 
-import ProfileCard from '@/lib/hoagie-ui/ProfileCard';
 import { hoagieTemplate } from '@/lib/hoagie-ui/Theme/themes';
 
 /**
@@ -55,9 +50,6 @@ interface NavProps {
 	// A list of tab objects for the navbar, each with `title` and `href` fields.
 	tabs?: Array<TabItem>;
 
-	// Authenticated user data.
-	user?: User;
-
 	// A flag to show the "beta" development disclaimer on the hoagie app logo.
 	beta?: boolean;
 }
@@ -71,13 +63,11 @@ export function Nav({
 	LogoComponent,
 	HeaderComponent,
 	tabs = [],
-	user,
 	beta = false,
 }: NavProps) {
 	const theme = hoagieTemplate;
 	const router = useRouter();
 	const pathname = usePathname();
-	const username = user?.name;
 
 	return (
 		<Pane elevation={1}>
@@ -153,23 +143,6 @@ export function Nav({
 								</Tab>
 							))}
 						</TabNavigation>
-						{user && (
-							<Popover
-								content={<ProfileCard user={user} />}
-								position={Position.BOTTOM}
-							>
-								<Avatar
-									name={username}
-									style={{
-										cursor: 'pointer',
-										border: `2px solid ${theme.colors.tealTint}`,
-									}}
-									backgroundColor={theme.colors.teal100}
-									size={40}
-									marginLeft={majorScale(4)}
-								/>
-							</Popover>
-						)}
 					</Pane>
 				</Pane>
 			</Pane>

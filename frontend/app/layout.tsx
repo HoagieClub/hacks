@@ -15,12 +15,10 @@ import '@/lib/hoagie-ui/Theme/theme.css';
 
 import { type ReactNode, type JSX } from 'react';
 
-import { Auth0Provider } from '@auth0/nextjs-auth0';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 
 import { Toaster } from '@/components/ui/sonner';
-import { auth0 } from '@/lib/auth0';
 import Layout from '@/lib/hoagie-ui/Layout';
 import Nav from '@/lib/hoagie-ui/Nav';
 import Theme from '@/lib/hoagie-ui/Theme';
@@ -44,19 +42,15 @@ interface ContentProps {
  * @returns JSX Element representing the content area.
  */
 async function Content({ children }: ContentProps): Promise<JSX.Element> {
-	const session = await auth0.getSession();
-	const user = session?.user;
 
 	const tabs = [
-		{ title: 'Feature 1', href: '/feature1' },
-		{ title: 'Feature 2', href: '/feature2' },
-		{ title: 'Feature 3', href: '/feature3' },
+		{ title: 'Feature 1', href: '/feature1' }
 	];
 
 	return (
 		<Theme palette='template'>
 			<Layout>
-				<Nav name='template' tabs={tabs} user={user} />
+				<Nav name='template' tabs={tabs}  />
 				{children}
 				<Toaster />
 			</Layout>
@@ -84,7 +78,6 @@ export function RootLayout({
 					}}
 				/>
 			</head>
-			<Auth0Provider>
 				<body className='antialiased'>
 					{/* Uncomment this to see components re-render. Used for debugging. */}
 					{/* <script src='https://unpkg.com/react-scan/dist/auto.global.js' /> */}
@@ -92,7 +85,6 @@ export function RootLayout({
 					<Analytics />
 					<SpeedInsights />
 				</body>
-			</Auth0Provider>
 		</html>
 	);
 }
