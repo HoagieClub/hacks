@@ -1,15 +1,13 @@
-# Hoagie Template
-
-Hoagie Club's app template repository.
+# Hoagie Hacks
 
 ## Getting Started
 
 ### Prerequisites
 
-Before you begin, ensure you have [Bun](https://bun.sh/) installed. You can install Bun via [Homebrew](https://brew.sh/) using the following command:
+Before you begin, ensure you have [Yarn](https://yarnpkg.com/getting-started/install) installed. Make sure you have [NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) installed before runnning this command:
 
 ```bash
-brew install bun
+npm install -g corepack
 ```
 
 ### Installation
@@ -17,7 +15,7 @@ brew install bun
 To install the necessary dependencies, run:
 
 ```bash
-bun install
+yarn
 ```
 
 ### Running the App
@@ -25,14 +23,10 @@ bun install
 Once the dependencies are installed, you can start the development server by running:
 
 ```bash
-bun run dev
+yarn dev
 ```
 
 The app will now be running locally, and you can view it in your browser at localhost:3000.
-
-### Backend
-
-The backend setup depends on the specific Hoagie Club app you're working on. Refer to the app-specific [documentation](https://docs.hoagie.io/) for backend details.
 
 ## License
 
