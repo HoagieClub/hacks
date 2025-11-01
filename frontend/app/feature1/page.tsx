@@ -1,6 +1,6 @@
 'use client';
 
-import type { ChangeEvent} from 'react';
+import type { ChangeEvent } from 'react';
 import { useState } from 'react';
 
 import { Text, Heading, Pane, majorScale, Button, TextInputField } from 'evergreen-ui';
@@ -9,8 +9,8 @@ import View from '@/components/View';
 
 export function Feature1() {
 	const [num1, setNum1] = useState('');
-    const [num2, setNum2] = useState('');
-    const [result, setResult] = useState<string | null>(null);
+	const [num2, setNum2] = useState('');
+	const [result, setResult] = useState<string | null>(null);
 
 	async function callAdd() {
 		try {
@@ -22,7 +22,7 @@ export function Feature1() {
 				},
 				body: JSON.stringify({
 					num1: Number(num1),
-                    num2: Number(num2),
+					num2: Number(num2),
 				}),
 			});
 
@@ -31,10 +31,10 @@ export function Feature1() {
 
 			// Check for errors and update result state
 			if (response.ok) {
-                setResult(String(data.sum));
-            } else {
-				setResult("Invalid inputs");
-            }
+				setResult(String(data.sum));
+			} else {
+				setResult('Invalid inputs');
+			}
 		} catch (err) {
 			alert(`API call failed: ${err}`);
 		}
@@ -46,12 +46,20 @@ export function Feature1() {
 				Welcome!
 			</Heading>
 
-			<TextInputField id="num1" label='Num1' value={num1} onChange={(e: ChangeEvent<HTMLInputElement>) => setNum1(e.target.value)} />
-			<TextInputField id="num2" label='Num2' value={num2} onChange={(e: ChangeEvent<HTMLInputElement>) => setNum2(e.target.value)} />
+			<TextInputField
+				id='num1'
+				label='Num1'
+				value={num1}
+				onChange={(e: ChangeEvent<HTMLInputElement>) => setNum1(e.target.value)}
+			/>
+			<TextInputField
+				id='num2'
+				label='Num2'
+				value={num2}
+				onChange={(e: ChangeEvent<HTMLInputElement>) => setNum2(e.target.value)}
+			/>
 
-			<Button onClick={callAdd}>
-				Click to add two numbers
-			</Button>
+			<Button onClick={callAdd}>Click to add two numbers</Button>
 
 			<Pane marginTop={8}>
 				<Text size={500}>Result: {result}</Text>
@@ -59,11 +67,7 @@ export function Feature1() {
 		</Pane>
 	);
 
-	return (
-		<View>
-			{SelectForm}
-		</View>
-	);
+	return <View>{SelectForm}</View>;
 }
 
 export default Feature1;

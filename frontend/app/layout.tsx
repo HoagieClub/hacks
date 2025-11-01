@@ -30,15 +30,15 @@ interface ContentProps {
  * @returns JSX Element representing the content area.
  */
 async function Content({ children }: ContentProps): Promise<JSX.Element> {
-
 	const tabs = [
-		{ title: 'Feature 1', href: '/feature1' }
+		{ title: 'Feature 1', href: '/feature1' },
+		{ title: 'React', href: '/react' },
 	];
 
 	return (
 		<Theme palette='template'>
 			<Layout>
-				<Nav name='template' tabs={tabs}  />
+				<Nav name='template' tabs={tabs} />
 				{children}
 				<Toaster />
 			</Layout>
@@ -66,13 +66,13 @@ export function RootLayout({
 					}}
 				/>
 			</head>
-				<body className='antialiased'>
-					{/* Uncomment this to see components re-render. Used for debugging. */}
-					{/* <script src='https://unpkg.com/react-scan/dist/auto.global.js' /> */}
-					<Content>{children}</Content>
-					<Analytics />
-					<SpeedInsights />
-				</body>
+			<body className='antialiased'>
+				{/* Uncomment this to see components re-render. Used for debugging. */}
+				{/* <script src='https://unpkg.com/react-scan/dist/auto.global.js' /> */}
+				<Content>{children}</Content>
+				<Analytics />
+				<SpeedInsights />
+			</body>
 		</html>
 	);
 }

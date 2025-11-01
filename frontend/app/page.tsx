@@ -17,20 +17,20 @@ export function Home() {
 	const theme = hoagieTemplate;
 
 	const Profile = (
-			<Pane>
-				<Link href='/feature1'>
-					<Button
-						height={56}
-						width={majorScale(35)}
-						backgroundColor={theme.colors.teal100}
-						marginBottom={20}
-						iconBefore={ArrowRightIcon}
-					>
-						Call to Action
-					</Button>
-				</Link>
-			</Pane>
-		);
+		<Pane>
+			<Link href='/feature1'>
+				<Button
+					height={56}
+					width={majorScale(35)}
+					backgroundColor={theme.colors.teal100}
+					marginBottom={20}
+					iconBefore={ArrowRightIcon}
+				>
+					Call to Action
+				</Button>
+			</Link>
+		</Pane>
+	);
 
 	return (
 		<Pane

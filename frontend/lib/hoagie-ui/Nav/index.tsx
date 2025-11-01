@@ -14,13 +14,7 @@
 
 import { type ComponentType } from 'react';
 
-import {
-	majorScale,
-	Pane,
-	Text,
-	TabNavigation,
-	Tab,
-} from 'evergreen-ui';
+import { majorScale, Pane, Text, TabNavigation, Tab } from 'evergreen-ui';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 
@@ -58,13 +52,7 @@ interface NavProps {
  * Nav is a navbar meant for internal navigations throughout
  * different Hoagie applications.
  */
-export function Nav({
-	name,
-	LogoComponent,
-	HeaderComponent,
-	tabs = [],
-	beta = false,
-}: NavProps) {
+export function Nav({ name, LogoComponent, HeaderComponent, tabs = [], beta = false }: NavProps) {
 	const theme = hoagieTemplate;
 	const router = useRouter();
 	const pathname = usePathname();
