@@ -18,6 +18,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from hoagiehacks.api.review_view import CreateReviewView, ReviewView, UserReviewsView
+from hoagiehacks.api.user_view import CreateUserView, UserView
+
 urlpatterns = [
     path("admin/", admin.site.urls),
+    # User endpoints
+    path("user/", CreateUserView.as_view(), name="user"),
+    path("user/<str:net_id>/", UserView.as_view(), name="user-detail"),
+    path("user/<str:net_id>/reviews/", UserReviewsView.as_view(), name="user-reviews"),
+    # Review endpoints
+    path("review/", CreateReviewView.as_view(), name="review"),
+    path("review/<int:review_id>/", ReviewView.as_view(), name="review-detail"),
 ]
