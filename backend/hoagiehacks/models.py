@@ -3,6 +3,7 @@ from django.db import models
 
 
 class Major(models.Model):
+    """Major model."""
     id = models.AutoField(primary_key=True)
     code = models.CharField(max_length=10, db_index=True, null=True)
 

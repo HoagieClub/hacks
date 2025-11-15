@@ -1,6 +1,5 @@
 export interface Major {
     id: number;
-    name: string;
     code: string;
     description: string;
     urls: Record<string, string>;
@@ -21,7 +20,6 @@ export interface UserProp {
     net_id: string;
     class_year: number | null;
     major_code?: string | null;
-    major_name?: string | null;
 }
 
 export interface Review {
@@ -31,7 +29,7 @@ export interface Review {
     user_net_ids: string[];
 }
 
-export interface ReviewProp {
+export interface CourseReviewProp {
     id?: number;
     course_name: string;
     rating: number;

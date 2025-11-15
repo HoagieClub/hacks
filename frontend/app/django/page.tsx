@@ -5,10 +5,10 @@ import type { ChangeEvent, FormEvent } from 'react';
 
 import { Pane, Heading, TextInput, Button, Card, Label, Text } from 'evergreen-ui';
 
-import { ReviewCard } from './ReviewCard';
+import { CourseReviewCard } from './CourseReviewCard';
 import { UserCard } from './UserCard';
 
-import type { UserProp, ReviewProp } from './types';
+import type { UserProp, CourseReviewProp } from './types';
 
 export function Django() {
     const [netId, setNetId] = useState<string>('');
@@ -22,7 +22,7 @@ export function Django() {
     });
 
     const [reviewNetId, setReviewNetId] = useState<string>('');
-    const [queriedReviews, setQueriedReviews] = useState<ReviewProp[]>([]);
+    const [queriedReviews, setQueriedReviews] = useState<CourseReviewProp[]>([]);
     const [reviewFormData, setReviewFormData] = useState({
         course_name: '',
         rating: '',
@@ -56,7 +56,6 @@ export function Django() {
                 net_id: data.net_id,
                 class_year: data.class_year,
                 major_code: data.major_code,
-                major_name: data.major_name,
             });
         } catch (error) {
             console.error(`Failed to fetch user: ${error}`);
@@ -409,7 +408,7 @@ export function Django() {
                     {queriedReviews.length > 0 && (
                         <Pane display='flex' flexDirection='column' gap={12}>
                             {queriedReviews.map((review) => (
-                                <ReviewCard key={review.id} review={review} />
+                                <CourseReviewCard key={review.id} review={review} />
                             ))}
                         </Pane>
                     )}

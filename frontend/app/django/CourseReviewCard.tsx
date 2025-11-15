@@ -1,12 +1,12 @@
 import { Card, Text, Badge, Pane } from 'evergreen-ui';
 
-import type { ReviewProp } from './types';
+import type { CourseReviewProp } from './types';
 
-type ReviewCardProps = {
-    review: ReviewProp;
+type CourseReviewCardProps = {
+    review: CourseReviewProp;
 };
 
-export function ReviewCard({ review }: ReviewCardProps) {
+export function CourseReviewCard({ review }: CourseReviewCardProps) {
     const isNotFound = review.course_name === 'No review found';
 
     const renderStars = (rating: number) => {
