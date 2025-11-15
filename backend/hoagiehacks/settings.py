@@ -83,7 +83,7 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = "hoagiehacks.CustomUser"
+# AUTH_USER_MODEL = "hoagiehacks.CustomUser"
 
 
 # Password validation
