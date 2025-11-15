@@ -19,9 +19,13 @@ from django.contrib import admin
 from django.urls import path
 
 from hoagiehacks.api.user_view import CreateUserView, UserView
+from hoagiehacks.api.review_view import CreateReviewView, ReviewView, UserReviewsView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("user/", CreateUserView.as_view(), name="user"),
-    path("user/<int:user_id>/", UserView.as_view(), name="user-detail"),
+    path("user/<str:net_id>/", UserView.as_view(), name="user-detail"),
+    path("review/", CreateReviewView.as_view(), name="review"),
+    path("review/<int:review_id>/", ReviewView.as_view(), name="review-detail"),
+    path("user/<str:net_id>/reviews/", UserReviewsView.as_view(), name="user-reviews"),
 ]

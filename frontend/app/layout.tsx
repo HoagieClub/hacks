@@ -31,8 +31,9 @@ interface ContentProps {
  */
 async function Content({ children }: ContentProps): Promise<JSX.Element> {
 	const tabs = [
-		{ title: 'Feature 1', href: '/feature1' },
+		{ title: 'Test 1', href: '/feature1' },
 		{ title: 'React', href: '/react' },
+		{ title: 'Django', href: '/django' },
 	];
 
 	return (
