@@ -36,7 +36,6 @@ class CreateUserView(APIView):
             )
             request.data["major"] = major
 
-        print(request.data)
         try:
             user = CustomUser.objects.create(**request.data)
         except Exception as e:
